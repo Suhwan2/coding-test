@@ -1,19 +1,27 @@
 n,m=map(int,input().split())
 
-result=1
+two=0
+five=0
 
-for i in range(m):
-    result*=(n-i)
-for i in range(m):
-    result//=(m-i)
 
-if result<10:
-    print(0)
+def div(a,b):
+    cnt=0
+    num=b
+    while b<=a:
+        cnt+=(int(a//b))
+        b*=num
+    return cnt
+
+two+=div(n,2)
+five+=div(n,5)
+
+two-=div(n-m,2)
+five-=div(n-m,5)
+
+two-=div(m,2)
+five-=div(m,5)
+
+if two>five:
+    print(five)
 else:
-    count=1
-    while True:
-        if result%(10**count)!=0:
-                print(count-1)
-                break
-        else:
-            count+=1
+    print(two)
