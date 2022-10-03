@@ -2,14 +2,8 @@ import sys
 
 n,k=map(int,sys.stdin.readline().split())
 
-p=[]
-
-for _ in range(n):
+dp=[[0]]
+for i in range(n):
     w,v=map(int,sys.stdin.readline().split())
-    p.append([w,v])
-
-dp=[[0 for _ in range(n)] for _ in range(n)]
-print(dp)
-
-for i in range(k):
-    pass
+    for j in range(w,k+1):
+        pass
