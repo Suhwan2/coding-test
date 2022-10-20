@@ -4,14 +4,13 @@ from collections import deque
 k=int(input())
 
 def bfs(r):
-    visited[r]=0
+    visited[r]=1
     color[r]=1
     q=deque()
     q.append(r)
 
     while q:
         v=q.popleft()
-
         for i in e[v]:
             if visited[i]==0:
                 visited[i]=1
@@ -21,8 +20,8 @@ def bfs(r):
                 else:
                     color[i]=1
             elif color[v]==color[i]:
-                return 0
-    return 1
+                return False
+    return True
 for _ in range(k):
     v,n=map(int,input().split())
     e=[[] for _ in range(v+1)]
@@ -33,8 +32,16 @@ for _ in range(k):
     visited=[0]*(v+1)
     color=[0]*(v+1)
 
-    if bfs(1):
-        print('YES')
-    else:
-        print('NO')
+    result=True
     
+    for i in range(1,v+1):
+        if visited[i]==0:
+            if not bfs(i):
+                result=False
+                break
+        
+    if result:
+        print("YES")
+    else:
+        print("NO")
+         
